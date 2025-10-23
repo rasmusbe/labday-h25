@@ -2,18 +2,13 @@
 
 import { Star } from 'lucide-react';
 
+import { RatingBreakdown as RatingBreakdownType } from '@/lib/types';
+
 interface RatingBreakdownProps {
-  overallRating: number;
-  ratingBreakdown: {
-    fiveStars: number;
-    fourStars: number;
-    threeStars: number;
-    twoStars: number;
-    oneStar: number;
-  };
+  ratingBreakdown: RatingBreakdownType;
 }
 
-export default function RatingBreakdown({ overallRating, ratingBreakdown }: RatingBreakdownProps) {
+export default function RatingBreakdown({ ratingBreakdown }: RatingBreakdownProps) {
   const formatRating = (rating: number) => {
     return rating.toFixed(1).replace('.', ',');
   };
@@ -29,6 +24,23 @@ export default function RatingBreakdown({ overallRating, ratingBreakdown }: Rati
     return (value / maxValue) * 100;
   };
 
+  // Calculate overall rating from breakdown
+  const calculateOverallRating = () => {
+    const totalRatings = ratingBreakdown.fiveStars + ratingBreakdown.fourStars +
+                        ratingBreakdown.threeStars + ratingBreakdown.twoStars +
+                        ratingBreakdown.oneStar;
+
+    if (totalRatings === 0) return 0;
+
+    const weightedSum = (ratingBreakdown.fiveStars * 5) +
+                       (ratingBreakdown.fourStars * 4) +
+                       (ratingBreakdown.threeStars * 3) +
+                       (ratingBreakdown.twoStars * 2) +
+                       (ratingBreakdown.oneStar * 1);
+
+    return weightedSum / totalRatings;
+  };
+
   const starRows = [
     { stars: 5, value: ratingBreakdown.fiveStars },
     { stars: 4, value: ratingBreakdown.fourStars },
@@ -36,6 +48,8 @@ export default function RatingBreakdown({ overallRating, ratingBreakdown }: Rati
     { stars: 2, value: ratingBreakdown.twoStars },
     { stars: 1, value: ratingBreakdown.oneStar },
   ];
+
+  const overallRating = calculateOverallRating();
 
   return (
     <div className="bg-white text-black p-6 rounded-lg border border-gray-200">

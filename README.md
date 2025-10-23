@@ -1,140 +1,110 @@
-# BeActive - Swedish Activity Booking Platform
+# BeActive - Swedish Activity Booking Platform (Turborepo)
 
-A modern Swedish activity booking platform built with Next.js 16, Tailwind CSS, and shadcn/ui.
+This is a modern Swedish activity booking platform built with Next.js 16, TypeScript, Tailwind CSS, and shadcn/ui components, organized as a Turborepo monorepo.
 
-## Features
+## Architecture
 
-- 🗺️ Interactive Mapbox integration with activity markers
-- 🎯 Activity categories and filtering
-- 🎠 Swiper-powered carousels for activity recommendations
-- 📱 Fully responsive design
-- 🎨 Modern UI with shadcn/ui components
-- 🇸🇪 Swedish localization
+This monorepo contains:
+
+- `apps/web` - Next.js 16 application
+- `packages/ui` - Shared UI components (shadcn/ui)
+- `packages/shared` - Shared utilities, types, and hooks
+
+## Key Technologies
+
+- **Next.js 16** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **shadcn/ui** for UI components
+- **Mapbox GL JS** for interactive maps
+- **Swiper** for carousels
+- **Unsplash API** for images
+- **Lucide React** for icons
+- **Turborepo** for monorepo management
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-- Mapbox account (for map functionality)
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd labday-h25
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Set up environment variables:
-```bash
-cp .env.example .env.local
-```
-
-4. Get API keys:
-   - **Mapbox**: Go to [Mapbox Account](https://account.mapbox.com/access-tokens/) and create a new access token
-   - **Unsplash**: Go to [Unsplash Developers](https://unsplash.com/developers) and create a new application
-   - Add both to your `.env.local` file:
-   ```
-   NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_mapbox_access_token_here
-   NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
+1. Install dependencies:
+   ```bash
+   npm install
    ```
 
-5. Run the development server:
-```bash
-npm run dev
-```
+2. Copy environment variables:
+   ```bash
+   cp apps/web/env.example apps/web/.env.local
+   ```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+3. Set up API keys for Mapbox and Unsplash in `apps/web/.env.local`:
+   ```
+   NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_mapbox_token
+   NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=your_unsplash_key
+   ```
+
+4. Run development server:
+   ```bash
+   npm run dev
+   ```
+
+## Development Commands
+
+- `npm run dev` - Start all development servers
+- `npm run build` - Build all packages and apps
+- `npm run lint` - Run ESLint on all packages
+- `npm run type-check` - Run TypeScript type checking
+- `npm run clean` - Clean all build artifacts
 
 ## Project Structure
 
 ```
-src/
-├── app/                 # Next.js app router pages
-├── components/          # React components
-│   ├── ui/             # shadcn/ui components
-│   ├── Header.tsx      # Site header
-│   ├── HeroSection.tsx # Hero section with search
-│   ├── InteractiveMap.tsx # Mapbox integration
-│   ├── ActivityCard.tsx # Activity card component
-│   ├── ActivityCarousel.tsx # Swiper carousel
-│   └── CallToAction.tsx # CTA section
-├── lib/                # Utilities and data
-│   ├── types.ts        # TypeScript interfaces
-│   ├── mock-data.ts    # Mock activity data
-│   └── utils.ts        # Utility functions
-└── public/             # Static assets
+├── apps/
+│   └── web/                 # Next.js application
+├── packages/
+│   ├── ui/                  # Shared UI components
+│   └── shared/              # Shared utilities and types
+├── turbo.json               # Turborepo configuration
+└── package.json             # Root package.json
 ```
 
-## Adding New Pages
+## Package Details
 
-To add new pages to the site:
+### `apps/web`
+The main Next.js application containing:
+- Pages and layouts
+- App-specific components
+- API routes
+- Static assets
 
-1. Create a new file in `src/app/` directory (e.g., `src/app/activities/page.tsx`)
-2. Export a default React component
-3. Use the existing components and styling patterns
-4. The page will be automatically available at `/activities`
+### `packages/ui`
+Shared UI components based on shadcn/ui:
+- Button, Card, Input components
+- Reusable UI primitives
+- TypeScript definitions
 
-## Customization
+### `packages/shared`
+Shared utilities and business logic:
+- TypeScript types and interfaces
+- Utility functions
+- Custom React hooks
+- Mock data and API integrations
 
-### Styling
-- All styling uses Tailwind CSS classes
-- shadcn/ui components can be customized in `src/components/ui/`
-- Global styles are in `src/app/globals.css`
+## Development Workflow
 
-### Data
-- Mock data is in `src/lib/mock-data.ts`
-- Types are defined in `src/lib/types.ts`
-- Replace mock data with real API calls as needed
-
-### Map Configuration
-- Map center and zoom can be adjusted in `InteractiveMap.tsx`
-- Map style can be changed in the Mapbox initialization
-- Marker icons can be customized in the `addMarkers` function
-
-## Technologies Used
-
-- **Next.js 16** - React framework with App Router
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Component library
-- **Mapbox GL JS** - Interactive maps
-- **Swiper** - Touch slider/carousel
-- **Lucide React** - Icon library
-
-## Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox access token for map functionality | Yes |
-| `NEXT_PUBLIC_UNSPLASH_ACCESS_KEY` | Unsplash API key for fetching images | Yes |
+1. Make changes to shared packages
+2. Changes are automatically reflected in the web app
+3. Use `npm run build` to build all packages
+4. Use `npm run dev` to start development servers
 
 ## Deployment
 
-The site can be deployed to any platform that supports Next.js:
+The web app can be deployed to Vercel or any other Next.js hosting platform. Make sure to:
 
-- **Vercel** (recommended)
-- **Netlify**
-- **Railway**
-- **AWS Amplify**
+1. Set environment variables in your deployment platform
+2. Build the project with `npm run build`
+3. Deploy the `apps/web` directory
 
-Make sure to set the `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` environment variable in your deployment platform.
+## Environment Variables
 
-## Contributing
+Required environment variables for the web app:
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
+- `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` - For map functionality
+- `NEXT_PUBLIC_UNSPLASH_ACCESS_KEY` - For fetching images

@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -13,9 +14,24 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@beactive/ui": ["../../packages/ui/src"],
+      "@beactive/shared": ["../../packages/shared/src"]
+    }
   },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
   "exclude": ["node_modules"]
 }

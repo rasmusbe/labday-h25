@@ -6,6 +6,21 @@ export interface RatingBreakdown {
   oneStar: number;
 }
 
+export interface Review {
+  id: string;
+  reviewerName: string;
+  date: string;
+  rating: number;
+  comment: string;
+  avatar?: string;
+}
+
+export interface ActivityFact {
+  icon: string;
+  label: string;
+  value: string;
+}
+
 export interface Activity {
   id: string;
   name: string;
@@ -16,6 +31,9 @@ export interface Activity {
   image: string;
   location: string;
   ratingBreakdown?: RatingBreakdown;
+  slug: string;
+  reviews?: Review[];
+  facts?: ActivityFact[];
 }
 
 export interface ActivityCategory {

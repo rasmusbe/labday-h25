@@ -14,14 +14,10 @@ declare global {
 
 interface FullScreenMapProps {
   activities: Activity[];
-  selectedActivity: Activity | null;
-  onActivitySelect: (activity: Activity) => void;
 }
 
 export default function FullScreenMap({
-  activities,
-  selectedActivity,
-  onActivitySelect
+  activities
 }: FullScreenMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<any>(null);
@@ -71,7 +67,7 @@ export default function FullScreenMap({
       el.className = 'marker';
       el.style.backgroundImage = `url('data:image/svg+xml;charset=utf-8,${encodeURIComponent(`
         <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="15" cy="15" r="12" fill="${selectedActivity?.id === activity.id ? '#000' : '#666'}" stroke="#fff" stroke-width="2"/>
+          <circle cx="15" cy="15" r="12" fill="#666" stroke="#fff" stroke-width="2"/>
           <text x="15" y="20" text-anchor="middle" fill="white" font-size="12" font-family="Arial">${activity.category.icon}</text>
         </svg>
       `)}')`;
@@ -79,11 +75,7 @@ export default function FullScreenMap({
       el.style.height = '30px';
       el.style.cursor = 'pointer';
       el.style.borderRadius = '50%';
-      el.style.border = selectedActivity?.id === activity.id ? '3px solid #000' : 'none';
-
-      el.addEventListener('click', () => {
-        onActivitySelect(activity);
-      });
+      el.style.border = 'none';
 
       const marker = new window.mapboxgl.Marker(el)
         .setLngLat(activity.coordinates)
@@ -102,12 +94,12 @@ export default function FullScreenMap({
     }
   };
 
-  // Update markers when activities or selectedActivity changes
+  // Update markers when activities change
   useEffect(() => {
     if (map.current) {
       updateMarkers();
     }
-  }, [activities, selectedActivity]);
+  }, [activities]);
 
   return (
     <div className="flex-1 h-full relative">

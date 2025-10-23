@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+---
+
+# BeActive - Swedish Activity Booking Platform
+
+This is a modern Swedish activity booking platform built with Next.js 16, TypeScript, Tailwind CSS, and shadcn/ui components.
+
+## Key Technologies
+- **Next.js 16** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **shadcn/ui** for UI components
+- **Mapbox GL JS** for interactive maps
+- **Swiper** for carousels
+- **Unsplash API** for images
+- **Lucide React** for icons
+
+## Project Structure
+- [src/app/](mdc:src/app/) - Next.js app router pages
+- [src/components/](mdc:src/components/) - React components
+- [src/components/ui/](mdc:src/components/ui/) - shadcn/ui components
+- [src/lib/](mdc:src/lib/) - Utilities, types, and data
+- [src/hooks/](mdc:src/hooks/) - Custom React hooks
+
+## Key Files
+- [src/app/layout.tsx](mdc:src/app/layout.tsx) - Root layout with Swedish localization
+- [src/app/page.tsx](mdc:src/app/page.tsx) - Home page with map and carousels
+- [src/lib/types.ts](mdc:src/lib/types.ts) - TypeScript interfaces
+- [src/lib/mock-data.ts](mdc:src/lib/mock-data.ts) - Mock activity data
+- [components.json](mdc:components.json) - shadcn/ui configuration
+
+## Environment Variables Required
+- `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` - For map functionality
+- `NEXT_PUBLIC_UNSPLASH_ACCESS_KEY` - For fetching images

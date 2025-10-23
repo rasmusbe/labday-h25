@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+
+# Development Workflow
+
+## Getting Started
+1. Install dependencies: `npm install`
+2. Copy environment variables: `cp env.example .env.local`
+3. Set up API keys for Mapbox and Unsplash
+4. Run development server: `npm run dev`
+
+## Development Commands
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## File Structure Guidelines
+- Add new pages in [src/app/](mdc:src/app/) directory
+- Create components in [src/components/](mdc:src/components/)
+- Add utilities in [src/lib/](mdc:src/lib/)
+- Create custom hooks in [src/hooks/](mdc:src/hooks/)
+
+## Component Development
+- Use existing components as templates
+- Follow the established patterns
+- Use proper TypeScript interfaces
+- Implement proper error handling
+
+## Testing
+- Test components in isolation
+- Test responsive behavior
+- Test API integrations
+- Test accessibility features
+
+## Deployment
+- Build the project with `npm run build`
+- Set environment variables in deployment platform
+- Use Vercel for optimal Next.js deployment
+- Ensure all API keys are properly configured

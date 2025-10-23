@@ -1,0 +1,35 @@
+---
+globs: src/components/**/*.tsx
+---
+
+# Component Development Patterns
+
+## Component Architecture
+- Follow the existing patterns in [src/components/](mdc:src/components/)
+- Use composition over inheritance
+- Keep components small and focused
+- Use proper TypeScript interfaces for props
+
+## UI Components
+- Use shadcn/ui components from [src/components/ui/](mdc:src/components/ui/)
+- Extend shadcn/ui components when needed
+- Follow the design system established in [components.json](mdc:components.json)
+- Use Lucide React icons consistently
+
+## Activity Components
+- Follow patterns from [ActivityCard.tsx](mdc:src/components/ActivityCard.tsx)
+- Use [ActivityImage.tsx](mdc:src/components/ActivityImage.tsx) for image handling
+- Implement proper loading states and error handling
+- Use the Activity interface from [src/lib/types.ts](mdc:src/lib/types.ts)
+
+## Map Integration
+- Follow the pattern in [InteractiveMap.tsx](mdc:src/components/InteractiveMap.tsx)
+- Use proper Mapbox GL JS integration
+- Handle dynamic imports for Mapbox
+- Implement proper marker management and event handling
+
+## Carousel Components
+- Use Swiper for carousels as in [ActivityCarousel.tsx](mdc:src/components/ActivityCarousel.tsx)
+- Implement proper responsive behavior
+- Handle touch/swipe interactions
+- Use proper accessibility attributes

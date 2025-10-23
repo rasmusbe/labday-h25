@@ -1,0 +1,35 @@
+---
+globs: *.css,src/app/globals.css,src/components/**/*.tsx
+---
+
+# Styling Guidelines
+
+## Tailwind CSS Usage
+- Use Tailwind CSS classes exclusively
+- Follow mobile-first responsive design
+- Use the `cn()` utility from [src/lib/utils.ts](mdc:src/lib/utils.ts) for conditional classes
+- Maintain consistent spacing and typography
+
+## Design System
+- Follow the shadcn/ui design system from [components.json](mdc:src/components.json)
+- Use consistent color schemes (black/white primary)
+- Implement proper hover states and transitions
+- Use proper focus states for accessibility
+
+## Component Styling
+- Use Tailwind classes directly in components
+- Avoid custom CSS when possible
+- Use CSS variables for theming
+- Implement proper responsive breakpoints
+
+## Global Styles
+- Use [src/app/globals.css](mdc:src/app/globals.css) for global styles
+- Import Mapbox CSS properly
+- Use proper font loading with Next.js
+- Implement proper CSS reset and base styles
+
+## Swedish Localization
+- Use Swedish text content
+- Implement proper RTL support if needed
+- Use appropriate Swedish typography
+- Follow Swedish design conventions

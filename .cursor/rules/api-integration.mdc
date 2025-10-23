@@ -1,0 +1,29 @@
+---
+globs: src/lib/unsplash.ts,src/hooks/useUnsplashImages.ts,src/components/Unsplash*.tsx
+---
+
+# API Integration Patterns
+
+## Unsplash Integration
+- Use the Unsplash client from [src/lib/unsplash.ts](mdc:src/lib/unsplash.ts)
+- Follow the pattern in [useUnsplashImages.ts](mdc:src/hooks/useUnsplashImages.ts) for data fetching
+- Use proper error handling and loading states
+- Implement proper image optimization
+
+## Mapbox Integration
+- Use the Mapbox GL JS integration pattern from [InteractiveMap.tsx](mdc:src/components/InteractiveMap.tsx)
+- Handle dynamic imports properly
+- Use environment variables for API keys
+- Implement proper marker management
+
+## Data Management
+- Use mock data from [src/lib/mock-data.ts](mdc:src/lib/mock-data.ts) for development
+- Follow the Activity interface from [src/lib/types.ts](mdc:src/lib/types.ts)
+- Implement proper TypeScript typing for API responses
+- Use proper error boundaries and fallbacks
+
+## Environment Variables
+- Use `NEXT_PUBLIC_` prefix for client-side variables
+- Store API keys securely
+- Provide fallback values for development
+- Document required environment variables

@@ -1,0 +1,29 @@
+---
+globs: src/app/**/*.tsx,src/app/**/*.ts
+---
+
+# Next.js App Router Patterns
+
+## App Router Structure
+- Use the App Router structure in [src/app/](mdc:src/app/)
+- Pages are defined by `page.tsx` files
+- Layouts are defined by `layout.tsx` files
+- Use proper metadata exports for SEO
+
+## Client vs Server Components
+- Use `'use client'` directive for components that need:
+  - Browser APIs (Mapbox, window object)
+  - Event handlers
+  - State management
+  - Interactive features
+- Keep server components for static content and data fetching
+
+## Data Fetching
+- Use proper Next.js data fetching patterns
+- Consider using React Server Components for static data
+- Use client-side fetching for dynamic/interactive data
+
+## Routing
+- Create new pages by adding `page.tsx` files in [src/app/](mdc:src/app/)
+- Use dynamic routes with `[param]` folders
+- Implement proper error boundaries with `error.tsx`

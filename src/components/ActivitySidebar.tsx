@@ -2,18 +2,15 @@
 
 import { Activity } from '@/lib/types';
 import ActivityCard from './ActivityCard';
+import Link from 'next/link';
 
 interface ActivitySidebarProps {
   activities: Activity[];
-  selectedActivity: Activity | null;
-  onActivitySelect: (activity: Activity) => void;
   loading?: boolean;
 }
 
 export default function ActivitySidebar({
   activities,
-  selectedActivity,
-  onActivitySelect,
   loading = false,
 }: ActivitySidebarProps) {
 
@@ -81,17 +78,13 @@ export default function ActivitySidebar({
       <div className="flex-1 overflow-y-auto">
         <div className="p-6 space-y-4">
           {activities.map((activity) => (
-            <div
+            <Link
               key={activity.id}
-              onClick={() => onActivitySelect(activity)}
-              className={`cursor-pointer transition-all duration-200 ${
-                selectedActivity?.id === activity.id
-                  ? 'ring-2 ring-black ring-opacity-20'
-                  : 'hover:shadow-md'
-              }`}
+              href={`/activities/${activity.slug}`}
+              className="block transition-all duration-200 hover:shadow-md"
             >
               <ActivityCard activity={activity} />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -10,7 +10,6 @@ import { useMemo, useState } from 'react';
 
 export default function ActivitiesPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [activeFilters, setActiveFilters] = useState({
     aktivitet: null as string | null,
     prisniva: null as string | null,
@@ -74,9 +73,6 @@ export default function ActivitiesPage() {
     }));
   };
 
-  const handleActivitySelect = (activity: Activity) => {
-    setSelectedActivity(activity);
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -100,8 +96,6 @@ export default function ActivitiesPage() {
           <div className="flex-1 overflow-hidden">
             <ActivitySidebar
               activities={filteredActivities}
-              selectedActivity={selectedActivity}
-              onActivitySelect={handleActivitySelect}
             />
           </div>
         </div>
@@ -110,8 +104,6 @@ export default function ActivitiesPage() {
         <div className="flex-1 hidden md:block">
           <FullScreenMap
             activities={filteredActivities}
-            selectedActivity={selectedActivity}
-            onActivitySelect={handleActivitySelect}
           />
         </div>
       </div>
@@ -121,8 +113,6 @@ export default function ActivitiesPage() {
         <div className="h-96">
           <FullScreenMap
             activities={filteredActivities}
-            selectedActivity={selectedActivity}
-            onActivitySelect={handleActivitySelect}
           />
         </div>
       </div>

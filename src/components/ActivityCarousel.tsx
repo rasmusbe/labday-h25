@@ -11,54 +11,60 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 interface ActivityCarouselProps {
-  title: string;
-  activities: Activity[];
+	title: string;
+	activities: Activity[];
 }
 
 export default function ActivityCarousel({ title, activities }: ActivityCarouselProps) {
-  return (
-    <section className="py-8">
-      <div className="px-6">
-        <h2 className="text-2xl font-bold text-black mb-6">{title}</h2>
+	return (
+		<section className='py-8'>
+			<div className='px-6'>
+				<h2 className='text-2xl font-bold text-black mb-6'>{title}</h2>
 
-        <div className="relative">
-          <Swiper
-            modules={[Navigation]}
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            }}
-            spaceBetween={16}
-            slidesPerView={1}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-              768: {
-                slidesPerView: 3,
-              },
-              1024: {
-                slidesPerView: 4,
-              },
-            }}
-            className="pb-4"
-          >
-            {activities.map((activity) => (
-              <SwiperSlide key={activity.id}>
-                <ActivityCard activity={activity} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+				<div className='relative'>
+					<Swiper
+						modules={[Navigation]}
+						navigation={{
+							nextEl: '.swiper-button-next',
+							prevEl: '.swiper-button-prev',
+						}}
+						spaceBetween={16}
+						slidesPerView={1}
+						breakpoints={{
+							640: {
+								slidesPerView: 2,
+							},
+							768: {
+								slidesPerView: 3,
+							},
+							1024: {
+								slidesPerView: 4,
+							},
+						}}
+						className='pb-4'
+					>
+						{activities.map((activity) => (
+							<SwiperSlide key={activity.id}>
+								<ActivityCard activity={activity} />
+							</SwiperSlide>
+						))}
+					</Swiper>
 
-          {/* Custom navigation buttons */}
-          <button className="swiper-button-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
-            <ChevronLeft className="h-4 w-4 text-black" />
-          </button>
-          <button className="swiper-button-next absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
-            <ChevronRight className="h-4 w-4 text-black" />
-          </button>
-        </div>
-      </div>
-    </section>
-  );
+					{/* Custom navigation buttons */}
+					<button
+						className='swiper-button-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors'
+						aria-label='Föregående aktiviteter'
+					>
+						<ChevronLeft className='h-4 w-4 text-black' />
+					</button>
+					<button
+						className='swiper-button-next absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors'
+						aria-label='Nästa aktiviteter'
+					>
+						<ChevronRight className='h-4 w-4 text-black' />
+					</button>
+				</div>
+			</div>
+		</section>
+	);
 }

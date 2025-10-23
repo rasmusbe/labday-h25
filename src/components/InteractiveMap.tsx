@@ -5,8 +5,8 @@ import { Card } from '@/components/ui/card';
 import { MOCK_ACTIVITIES } from '@/lib/mock-data';
 import { Activity, ACTIVITY_CATEGORIES } from '@/lib/types';
 import { Star } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import ActivityImage from './ActivityImage';
 
 // Import Mapbox GL CSS
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -109,7 +109,7 @@ export default function InteractiveMap({ onActivitySelect }: InteractiveMapProps
         {selectedActivity && (
           <Card className="absolute top-4 left-4 max-w-sm bg-white border border-gray-200 shadow-lg">
             <div className="aspect-video relative overflow-hidden rounded-t-lg">
-              <ActivityImage
+              <Image
                 src={selectedActivity.image}
                 alt={selectedActivity.name}
                 fill

@@ -1,8 +1,8 @@
+import ActivityCarousel from '@/components/ActivityCarousel';
 import CallToAction from '@/components/CallToAction';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import InteractiveMap from '@/components/InteractiveMap';
-import UnsplashActivityCarousel from '@/components/UnsplashActivityCarousel';
 import { POPULAR_ACTIVITIES, RECOMMENDED_ACTIVITIES } from '@/lib/mock-data';
 
 export default function Home() {
@@ -20,13 +20,13 @@ export default function Home() {
         </section>
 
         {/* Popular Activities Carousel */}
-        <UnsplashActivityCarousel
+        <ActivityCarousel
           title="Populärt nära dig"
           activities={POPULAR_ACTIVITIES}
         />
 
         {/* Recommended Activities Carousel */}
-        <UnsplashActivityCarousel
+        <ActivityCarousel
           title="Eftersom att du bokade klättring"
           activities={RECOMMENDED_ACTIVITIES}
         />

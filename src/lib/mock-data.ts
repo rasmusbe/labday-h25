@@ -1,7 +1,8 @@
 import { Activity } from './types';
+import { getActivityImages } from './unsplash';
 
-// Create activities - images will be fetched from Unsplash API
-export const MOCK_ACTIVITIES: Activity[] = [
+// Base activities data without images
+const BASE_ACTIVITIES: Omit<Activity, 'image'>[] = [
   {
     id: '1',
     name: 'Klättring i Sundbornsån',
@@ -9,8 +10,8 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.5,
     category: { id: 'aktiviteter', name: 'Aktiviteter', icon: '🎯' },
     coordinates: [15.6, 60.7],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Sundbornsån'
+    location: 'Sundbornsån',
+    ratingBreakdown: { fiveStars: 45, fourStars: 35, threeStars: 15, twoStars: 3, oneStar: 2 }
   },
   {
     id: '2',
@@ -19,8 +20,8 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.8,
     category: { id: 'naturuppleviser', name: 'Naturuppleviser', icon: '🌲' },
     coordinates: [15.5, 60.6],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Varbotjärnen'
+    location: 'Varbotjärnen',
+    ratingBreakdown: { fiveStars: 60, fourStars: 30, threeStars: 8, twoStars: 1, oneStar: 1 }
   },
   {
     id: '3',
@@ -29,8 +30,8 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.3,
     category: { id: 'aktiviteter', name: 'Aktiviteter', icon: '🎯' },
     coordinates: [15.4, 60.5],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Slätta'
+    location: 'Slätta',
+    ratingBreakdown: { fiveStars: 30, fourStars: 40, threeStars: 25, twoStars: 4, oneStar: 1 }
   },
   {
     id: '4',
@@ -39,8 +40,8 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.7,
     category: { id: 'boende', name: 'Boende', icon: '🏠' },
     coordinates: [15.7, 60.8],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Carl Larsson-gården'
+    location: 'Carl Larsson-gården',
+    ratingBreakdown: { fiveStars: 55, fourStars: 35, threeStars: 8, twoStars: 1, oneStar: 1 }
   },
   {
     id: '5',
@@ -49,8 +50,8 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.2,
     category: { id: 'mat-dryck', name: 'Mat & dryck', icon: '🍽️' },
     coordinates: [15.3, 60.4],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Högtäkt'
+    location: 'Högtäkt',
+    ratingBreakdown: { fiveStars: 25, fourStars: 45, threeStars: 25, twoStars: 4, oneStar: 1 }
   },
   {
     id: '6',
@@ -59,8 +60,8 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.9,
     category: { id: 'naturuppleviser', name: 'Naturuppleviser', icon: '🌲' },
     coordinates: [15.8, 60.9],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Stångtjärn'
+    location: 'Stångtjärn',
+    ratingBreakdown: { fiveStars: 80, fourStars: 18, threeStars: 2, twoStars: 0, oneStar: 0 }
   },
   {
     id: '7',
@@ -69,8 +70,8 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.4,
     category: { id: 'utrustning-service', name: 'Utrustning & service', icon: '⚙️' },
     coordinates: [15.2, 60.3],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Varpan'
+    location: 'Varpan',
+    ratingBreakdown: { fiveStars: 35, fourStars: 40, threeStars: 20, twoStars: 4, oneStar: 1 }
   },
   {
     id: '8',
@@ -79,10 +80,35 @@ export const MOCK_ACTIVITIES: Activity[] = [
     rating: 4.6,
     category: { id: 'boende', name: 'Boende', icon: '🏠' },
     coordinates: [15.1, 60.2],
-    image: '', // Will be replaced by Unsplash API
-    location: 'Slogmyrloken'
+    location: 'Slogmyrloken',
+    ratingBreakdown: { fiveStars: 50, fourStars: 35, threeStars: 12, twoStars: 2, oneStar: 1 }
   }
 ];
+
+// Function to generate activities with Unsplash images
+export async function generateActivitiesWithImages(): Promise<Activity[]> {
+  try {
+    const images = await getActivityImages();
+
+    return BASE_ACTIVITIES.map((activity, index) => ({
+      ...activity,
+      image: images[index]?.url || '/placeholder-activity.jpg' // Fallback to placeholder
+    }));
+  } catch (error) {
+    console.error('Error generating activities with images:', error);
+    // Return activities with placeholder images
+    return BASE_ACTIVITIES.map(activity => ({
+      ...activity,
+      image: '/placeholder-activity.jpg'
+    }));
+  }
+}
+
+// For backward compatibility, export static data (will be replaced by async function)
+export const MOCK_ACTIVITIES: Activity[] = BASE_ACTIVITIES.map(activity => ({
+  ...activity,
+  image: '/placeholder-activity.jpg'
+}));
 
 export const POPULAR_ACTIVITIES = MOCK_ACTIVITIES.slice(0, 4);
 export const RECOMMENDED_ACTIVITIES = MOCK_ACTIVITIES.slice(4, 8);

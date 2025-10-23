@@ -1,3 +1,11 @@
+export interface RatingBreakdown {
+  fiveStars: number;
+  fourStars: number;
+  threeStars: number;
+  twoStars: number;
+  oneStar: number;
+}
+
 export interface Activity {
   id: string;
   name: string;
@@ -7,6 +15,7 @@ export interface Activity {
   coordinates: [number, number]; // [longitude, latitude]
   image: string;
   location: string;
+  ratingBreakdown?: RatingBreakdown;
 }
 
 export interface ActivityCategory {
